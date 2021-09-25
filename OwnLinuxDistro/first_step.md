@@ -21,6 +21,9 @@ tips(wifi problem):
 
 2) Now I need to create disk partitions using parted or sfdisk, but sfdisk is not too god for GPT format, and it wasn't designed for large partitions. ( I need to study GPT format and others more )
 
+obs: I decided to use parted, however if it doesn't work, I'll use cfdisk
+
+
 
 
 
