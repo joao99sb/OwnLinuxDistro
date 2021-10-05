@@ -5,7 +5,7 @@ network bridge
 
 1) I need to update pacman and set keyboard to br-abnt2 (BR keyboard standart)
 
-tips(wifi problem):
+tips(wifi problem):\
 - ip addr show ( net test )
 - if you're using wifi: {
     - 1(manually): {
