@@ -43,16 +43,13 @@ loadkeys br-abnt2
 #       Disk  partition        #
 ################################
 
-# make function to do the partition
-# 1) show free space    fdisk -l <disk>
-# 2) show partintions   lsblk <disk>
-# 3) create partiiton
+
 
 #partitions:
-# /boot -> grub info (Recommendation: 500M) (type: bios boot) (formated: Fat32)
-# / (type: Linxu filesystem)
-# /home (type: Linxu filesystem)
+# /boot -> grub info (Recommendation: 500M) (type: EFI system) (formated: Fat32)
 # /swap ( only if you don't wanna use swapfile) (type: Linux swap) (Recommendation: 2G)
+# / (type: Linxu filesystem)
+
 
 echo -e "####################"
 echo -e "#  PARTITION Time  #"
@@ -89,3 +86,24 @@ mkswap "${part_swap}"
 mkfs.ext4 "${part_root}"
 
 swapon "${part_swap}"
+
+mount "${part_root}" /mnt
+mkdir /mnt/boot
+mkdir /mnt/boot/efi
+mount "${part_boot}" /mnt/boot/efi
+
+pacstrap /mnt base base-devel linux linux-firmware
+
+genfstab -U -p /mnt >> /mnt/etc/fstab
+
+##############################
+#       init system          #
+##############################
+
+arch-chroot /mnt
+
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+# set bios clock to system
+hwclock --systohc
+
+locale-gen
