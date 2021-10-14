@@ -5,25 +5,25 @@
 ############################
 
 # show interfaces devices
-iw dev
-echo -e "\n"
-echo -e "chose your network interface: "
+# iw dev
+# echo -e "\n"
+# echo -e "chose your network interface: "
 
-read NETWORK_INTERFACE
+# read NETWORK_INTERFACE
 
-ip link set $NETWORK_INTERFACE up || rfkill unblock wifi && ip link set $NETWORK_INTERFACE up
+# ip link set $NETWORK_INTERFACE up || rfkill unblock wifi && ip link set $NETWORK_INTERFACE up
 
-iw dev $NETWORK_INTERFACE scan | grep SSID
+# iw dev $NETWORK_INTERFACE scan | grep SSID
 
-echo -e "chose your network: "
+# echo -e "chose your network: "
 
-read WIFI
+# read WIFI
 
-echo "password: "
+# echo "password: "
 
-read -s PASSWORD
+# read -s PASSWORD
 
-iwctl --passphrase "${PASSWORD}" station "${NETWORK_INTERFACE}" connect "${WIFI}"
+# iwctl --passphrase "${PASSWORD}" station "${NETWORK_INTERFACE}" connect "${WIFI}"
 
 # I need to implement retry password as new feature
 
@@ -93,6 +93,8 @@ mkdir /mnt/boot/efi
 mount "${part_boot}" /mnt/boot/efi
 
 pacstrap /mnt base base-devel linux linux-firmware
+
+cp ./script_1.sh /mnt/script_1.sh
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
