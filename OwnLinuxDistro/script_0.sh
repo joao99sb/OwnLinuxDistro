@@ -95,6 +95,7 @@ mount "${part_boot}" /mnt/boot/efi
 pacstrap /mnt base base-devel linux linux-firmware
 
 cp ./script_1.sh /mnt/script_1.sh
+cp ./script_2.sh /mnt/script_2.sh
 
 genfstab -U -p /mnt >> /mnt/etc/fstab
 

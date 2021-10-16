@@ -21,7 +21,7 @@ echo "127.0.0.1 ${HOSTNAME}.localdomain $HOSTNAME" >> /etc/hosts
 echo "chose your root password: "
 passwd 
 
-pacman -S nano git curl nano dosfstools os-prober ntools network-manager-applet networkmanager wpa_supplicant wireless_tools dialog sudo
+pacman -S nano git curl nano dosfstools os-prober network-manager-applet networkmanager wpa_supplicant wireless_tools dialog sudo
 
 pacman -S grub-efi-x86_64 efibootmgr
 
@@ -32,4 +32,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 
 systemctl enable NetworkManager 
+loadkeys br-abnt2
+
 exit
