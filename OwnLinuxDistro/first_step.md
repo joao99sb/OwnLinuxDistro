@@ -8,9 +8,7 @@ network bridge
 tips(wifi problem):\
 - ip addr show ( net test )
 - if you're using wifi: {
-    - 1(manually): {
-        - injecting wifi-menu in .ISO:
-            - https://www.vivaolinux.com.br/dica/Arch-Linux-Configurando-Wi-Fi-com-wifi-menu     
+    - 1(manually): {   
         - verbouse: 
             - https://wiki.archlinux.org/title/Network_configuration_(Portugu%C3%AAs)/Wireless_(Portugu%C3%AAs)         
     },
