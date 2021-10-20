@@ -1,6 +1,5 @@
-Buy default, this script is just for virtual machines (VirtualBox in my case)
 UEFI MODE
-network bridge
+WIFI NETWORK
 
 
 1) I need to update pacman and set keyboard to br-abnt2 (BR keyboard standart)
@@ -23,7 +22,7 @@ obs: I decided to use parted, however if it doesn't work, I'll use cfdisk
 
 
 
-
+3) Now I need to config Desktop environments using script, for now I'm configuring  manually
 
 
 
