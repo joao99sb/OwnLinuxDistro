@@ -16,7 +16,10 @@ read HOSTNAME
 echo $HOSTNAME >> /etc/hostname
 
 echo "127.0.0.1 localhost.localdomain localhost" >> /etc/hosts
+echo "::1 localhost.localdomain localhost" >> /etc/hosts
 echo "127.0.0.1 ${HOSTNAME}.localdomain $HOSTNAME" >> /etc/hosts
+
+mkinitcpio -P
 
 echo "chose your root password: "
 passwd 
