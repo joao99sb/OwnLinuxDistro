@@ -147,6 +147,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 
 systemctl enable NetworkManager 
-loadkeys br-abnt2
+
 
 exit

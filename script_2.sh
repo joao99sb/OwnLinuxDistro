@@ -3,7 +3,7 @@
 ####################
 #   wifi manager   #
 ####################
-
+loadkeys br-abnt2
 nmcli device wifi list
 echo $WIFI_LIST 
 

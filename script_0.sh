@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source ./functions/boot.sh
 
 ############################
 #       wifi search        #
@@ -57,40 +58,19 @@ echo -e "####################\n"
 
 # this function will partitionate the hard disk
 
-device_list=($(lsblk -lnp | awk '{print $1}' | grep 'sd\|hd\|vd\|nvme\|mmcblk'))
+echo -e "what kind of boot do you want?\n"
+bootTime(){
+    echo -e "1) dual boot\n"
+    echo -e "2) single boot\n"
 
-lsblk -lnp
+    local read BOOT_OPT
+    case $BOOT_OPT in
+    1) dualBoot ;;
+    2) singleboot ;;
+    *) bootTime ;;
+    esac
+}
 
-echo -e 'chose your device to partition:\n\n'
-
-select device in ${device_list[@]}; do
-    DISK=$device
-    break
-done
-
-swap_size=$(free --mebi | awk '/Mem:/ {print $2}')
-swap_end=$(($swap_size + 129 + 1))MiB
-
-parted -s $DISK -- mklabel gpt \
-mkpart ESP fat32 1Mib 501Mib \
-set 1 boot on \
-mkpart primary linux-swap 501MiB ${swap_end} \
-mkpart primary ext4 ${swap_end} 100%
-
-part_boot="$(ls ${DISK}* | grep -E "^${DISK}p?1$")"
-part_swap="$(ls ${DISK}* | grep -E "^${DISK}p?2$")"
-part_root="$(ls ${DISK}* | grep -E "^${DISK}p?3$")"
-
-mkfs.vfat -F32 "${part_boot}"
-mkswap "${part_swap}"
-mkfs.ext4 "${part_root}"
-
-swapon "${part_swap}"
-
-mount "${part_root}" /mnt
-mkdir /mnt/boot
-mkdir /mnt/boot/efi
-mount "${part_boot}" /mnt/boot/efi
 
 pacstrap /mnt base base-devel linux linux-firmware
 
