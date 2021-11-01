@@ -65,6 +65,7 @@ PKGS=(
     'zsh-completions'       # Tab completion for ZSH
     'dialog'
     'sudo'
+    'coreutils'
 
     # DISK UTILITIES ------------------------------------------------------
 
