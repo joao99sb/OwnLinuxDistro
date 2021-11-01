@@ -33,7 +33,7 @@ nano /etc/sudoers
 #  Desktop environments  #
 ##########################
 
-pacmna -S xorg plasma plasma-wayland-session kde-applications --noconfirm
+pacman -S xorg plasma plasma-wayland-session kde-applications --noconfirm
 
 systemctl enable sddm.service
 systemctl enable NetworkManager.service
